@@ -30,7 +30,7 @@ from sklearn.metrics import (
 
 warnings.filterwarnings("ignore")
 
-# ── Constants ────────────────────────────────────────────────────────────────
+# Constants ─────
 MODEL_DIR = "model"
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
@@ -38,7 +38,7 @@ TEST_SIZE = 0.2
 # Models that require StandardScaler
 SCALE_REQUIRED = {"Logistic Regression", "kNN", "XGBoost"}
 
-# ── Model definitions ─────────────────────────────────────────────────────────
+# Model definitions 
 def get_models() -> dict:
     return {
         "Logistic Regression": LogisticRegression(max_iter=1000, random_state=RANDOM_STATE),
@@ -50,7 +50,7 @@ def get_models() -> dict:
     }
 
 
-# ── Data loading ──────────────────────────────────────────────────────────────
+# Data loading 
 def load_default_dataset() -> tuple[pd.DataFrame, pd.Series, list[str]]:
     bc = load_breast_cancer()
     X = pd.DataFrame(bc.data, columns=bc.feature_names)
@@ -78,7 +78,7 @@ def load_csv_dataset(filepath: str, target_col: str = "target") -> tuple[pd.Data
     return X, y, expected
 
 
-# ── Pre-processing ────────────────────────────────────────────────────────────
+# Pre-processing ─
 def split_and_scale(
     X: pd.DataFrame,
     y: pd.Series,
@@ -97,7 +97,7 @@ def split_and_scale(
     return X_train, X_test, X_train_scaled, X_test_scaled, y_train, y_test, scaler
 
 
-# ── Single model evaluation ───────────────────────────────────────────────────
+# Single model evaluation 
 def evaluate_model(
     name: str,
     model,
@@ -139,7 +139,7 @@ def evaluate_model(
     }
 
 
-# ── Train all 6 models ────────────────────────────────────────────────────────
+# Train all 6 models 
 def train_all_models(
     X_train, X_test,
     X_train_scaled, X_test_scaled,
@@ -157,7 +157,7 @@ def train_all_models(
     return results
 
 
-# ── Save artefacts ────────────────────────────────────────────────────────────
+# Save artefacts 
 def save_artefacts(results: dict, scaler: StandardScaler) -> None:
     os.makedirs(MODEL_DIR, exist_ok=True)
     joblib.dump(scaler, os.path.join(MODEL_DIR, "scaler.pkl"))
@@ -168,7 +168,7 @@ def save_artefacts(results: dict, scaler: StandardScaler) -> None:
     pd.DataFrame(rows).to_csv("model_comparison_results.csv", index=False)
 
 
-# ── Export test data to CSV ───────────────────────────────────────────────────
+# Export test data to CSV 
 def export_test_data(
     X_test: pd.DataFrame,
     y_test: pd.Series,
@@ -205,7 +205,7 @@ def export_test_data(
     return abs_path
 
 
-# ── Confusion matrix figure ───────────────────────────────────────────────────
+# Confusion matrix figure 
 def plot_confusion_matrix(cm: np.ndarray, model_name: str) -> plt.Figure:
     fig, ax = plt.subplots(figsize=(4.5, 3.8))
     fig.patch.set_facecolor("#F7F5F0")
@@ -226,7 +226,7 @@ def plot_confusion_matrix(cm: np.ndarray, model_name: str) -> plt.Figure:
     return fig
 
 
-# ── ROC curve figure ──────────────────────────────────────────────────────────
+# ROC curve figure 
 def plot_roc_curves(results: dict) -> plt.Figure:
     from sklearn.metrics import roc_curve
 
@@ -253,7 +253,7 @@ def plot_roc_curves(results: dict) -> plt.Figure:
     return fig
 
 
-# ── CLI entry-point ───────────────────────────────────────────────────────────
+# CLI entry-point 
 if __name__ == "__main__":
     print("Loading Breast Cancer Wisconsin dataset …")
     X, y, feature_names = load_default_dataset()

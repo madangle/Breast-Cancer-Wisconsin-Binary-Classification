@@ -40,7 +40,7 @@ to:
 
 ## 📊 b. Dataset Description
 
-**Dataset:** Breast Cancer Wisconsin (Diagnostic Dataset)\
+**Dataset:** Breast Cancer Wisconsin (Diagnostic Dataset)
 **Type:** Binary Classification
 
 ### Dataset Characteristics
@@ -56,70 +56,39 @@ to:
 
 ## 🤖 c. Models Used
 
-1.  Logistic Regression\
-2.  Decision Tree Classifier\
-3.  K-Nearest Neighbors (kNN)\
-4.  Gaussian Naive Bayes\
-5.  Random Forest (Ensemble)\
+1.  Logistic Regression
+2.  Decision Tree Classifier
+3.  K-Nearest Neighbors (kNN)
+4.  Gaussian Naive Bayes
+5.  Random Forest (Ensemble)
 6.  XGBoost (Ensemble)
 
 ------------------------------------------------------------------------
 
 ## 📈 Model Performance Comparison
 
-  -------------------------------------------------------------------------------
-  ML Model Name    Accuracy    AUC      Precision     Recall    F1       MCC
-  ---------------- ----------- -------- ------------- --------- -------- --------
-  Logistic         0.7826      0.9000   0.7778        0.9333    0.8485   0.5004
-  Regression                                                             
+| ML Model Name        | Accuracy | AUC    | Precision | Recall | F1     | MCC    |
+|----------------------|----------|--------|-----------|--------|--------|--------|
+| Logistic Regression  | 0.7826   | 0.9000 | 0.7778    | 0.9333 | 0.8485 | 0.5004 |
+| Decision Tree        | 0.8261   | 0.7500 | 0.7895    | 1.0000 | 0.8824 | 0.6283 |
+| KNN                  | 0.7391   | 0.8000 | 0.7647    | 0.8667 | 0.8125 | 0.3977 |
+| Naive Bayes          | 0.8696   | 0.9417 | 0.8333    | 1.0000 | 0.9091 | 0.7217 |
+| Random Forest        | 0.8261   | 0.9167 | 0.7895    | 1.0000 | 0.8824 | 0.6283 |
+| XGBoost              | 0.8261   | 0.9250 | 0.7895    | 1.0000 | 0.8824 | 0.6283 |
 
-  Decision Tree    0.8261      0.7500   0.7895        1.0000    0.8824   0.6283
-
-  KNN              0.7391      0.8000   0.7647        0.8667    0.8125   0.3977
-
-  Naive Bayes      0.8696      0.9417   0.8333        1.0000    0.9091   0.7217
-
-  Random Forest    0.8261      0.9167   0.7895        1.0000    0.8824   0.6283
-
-  XGBoost          0.8261      0.9250   0.7895        1.0000    0.8824   0.6283
-  -------------------------------------------------------------------------------
-
-------------------------------------------------------------------------
 
 ## 📌 Model Observations
 
-  -----------------------------------------------------------------------
-  ML Model Name                           Observation
-  --------------------------------------- -------------------------------
-  Logistic Regression                     Strong AUC and high recall.
-                                          Performs well in detecting
-                                          malignant cases but moderate
-                                          MCC.
 
-  Decision Tree                           Achieved perfect recall (1.0),
-                                          meaning no malignant case was
-                                          missed. Lower AUC suggests
-                                          weaker ranking performance.
+| ML Model Name        | Observation |
+|----------------------|------------|
+| Logistic Regression  | Strong AUC and high recall. Performs well in detecting malignant cases but moderate MCC. |
+| Decision Tree        | Achieved perfect recall (1.0), meaning no malignant case was missed. Lower AUC suggests weaker ranking performance. |
+| kNN                  | Lowest overall performance. Lower accuracy and MCC indicate weaker generalization. |
+| Naive Bayes          | Best performing model. Highest Accuracy, AUC, F1-score, and MCC. Balanced and highly effective. |
+| Random Forest        | Strong ensemble model with excellent recall and high AUC. Stable performance. |
+| XGBoost              | High AUC and perfect recall. Performance comparable to Random Forest. |
 
-  KNN                                     Lowest overall performance.
-                                          Lower accuracy and MCC indicate
-                                          weaker generalization.
-
-  Naive Bayes                             Best performing model. Highest
-                                          Accuracy, AUC, F1-score, and
-                                          MCC. Balanced and highly
-                                          effective.
-
-  Random Forest                           Strong ensemble model with
-                                          excellent recall and high AUC.
-                                          Stable performance.
-
-  XGBoost                                 High AUC and perfect recall.
-                                          Performance comparable to
-                                          Random Forest.
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
 
 ## 🛠️ Tech Stack
 
@@ -135,10 +104,11 @@ to:
 ## 🚀 How to Run
 
 ``` bash
-git clone <repository-url>
-cd breast-cancer-classification
+git clone https://github.com/madangle/Breast-Cancer-Wisconsin-Binary-Classification.git
+cd Breast-Cancer-Wisconsin-Binary-Classification
 pip install -r requirements.txt
-python main.py
+python machine_learning.py
+streamlit run app.py
 ```
 
 ------------------------------------------------------------------------

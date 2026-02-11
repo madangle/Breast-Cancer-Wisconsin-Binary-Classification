@@ -24,7 +24,7 @@ from machine_learning import (
 
 warnings.filterwarnings("ignore")
 
-# ── Page config ───────────────────────────────────────────────────────────────
+# Page config 
 st.set_page_config(
     page_title="Cancer Diagnosis | Breast Cancer Wisconsin Classification",
     page_icon="🔬",
@@ -32,7 +32,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ── CSS ───────────────────────────────────────────────────────────────────────
+# CSS 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap');
@@ -249,14 +249,14 @@ hr { border-color: var(--border) !important; margin: 1.6rem 0 !important; }
 """, unsafe_allow_html=True)
 
 
-# ── Session state ─────────────────────────────────────────────────────────────
+# Session state 
 if "results" not in st.session_state:
     st.session_state.results     = None
 if "trained_data" not in st.session_state:
     st.session_state.trained_data = None
 
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header 
 st.markdown("""
 <div class="top-header">
     <div>
@@ -268,7 +268,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ── Tabs ──────────────────────────────────────────────────────────────────────
+# Tabs 
 tab_train, tab_eval, tab_compare, tab_about = st.tabs([
     "01 · Dataset & Train",
     "02 · Evaluate Model",
@@ -312,7 +312,7 @@ with tab_train:
     if train_btn:
         with st.spinner("Loading data and training models …"):
             try:
-                # ── Load ──
+                # Load 
                 if uploaded is not None:
                     X, y, feature_names = load_csv_dataset(
                         io.StringIO(uploaded.read().decode("utf-8"))
@@ -322,13 +322,13 @@ with tab_train:
                     X, y, feature_names = load_default_dataset()
                     data_source = "Built-in sklearn Breast Cancer dataset"
 
-                # ── Split & scale ──
+                # Split & scale 
                 X_train, X_test, X_tr_sc, X_te_sc, y_train, y_test, scaler = split_and_scale(X, y)
 
-                # ── Train ──
+                # Train 
                 results = train_all_models(X_train, X_test, X_tr_sc, X_te_sc, y_train, y_test)
 
-                # ── Cache ──
+                # Cache 
                 st.session_state.results = results
                 st.session_state.trained_data = {
                     "source":       data_source,
@@ -389,7 +389,7 @@ with tab_eval:
         res = results[selected]
         m   = res["metrics"]
 
-        # ── Metrics strip ──────────────────────────────────────────────────
+        # Metrics strip 
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown('<div class="sec-head">Performance Metrics</div>', unsafe_allow_html=True)
 
@@ -410,7 +410,7 @@ with tab_eval:
         </div>"""
         st.markdown(strip_html, unsafe_allow_html=True)
 
-        # ── Confusion matrix + classification report ───────────────────────
+        # Confusion matrix + classification report 
         cm_col, rep_col = st.columns([2, 3])
 
         with cm_col:
@@ -447,7 +447,7 @@ with tab_eval:
                     unsafe_allow_html=True,
                 )
 
-        # ── Scaling note ───────────────────────────────────────────────────
+        # Scaling note ─
         if selected in SCALE_REQUIRED:
             st.markdown(
                 '<p style="font-family:\'DM Mono\',monospace;font-size:0.62rem;'
@@ -468,7 +468,7 @@ with tab_compare:
         rows = [{"Model": n, **r["metrics"]} for n, r in results.items()]
         compare_df = pd.DataFrame(rows)
 
-        # ── Summary metrics ────────────────────────────────────────────────
+        # Summary metrics ──
         st.markdown('<div class="sec-head">Summary</div>', unsafe_allow_html=True)
         best  = compare_df.loc[compare_df["Accuracy"].idxmax()]
         worst = compare_df.loc[compare_df["Accuracy"].idxmin()]
@@ -482,7 +482,7 @@ with tab_compare:
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # ── Table + bar chart ──────────────────────────────────────────────
+        # Table + bar chart 
         tbl_col, chart_col = st.columns([5, 4])
         with tbl_col:
             st.markdown('<div class="sec-head">All Metrics</div>', unsafe_allow_html=True)
@@ -495,7 +495,7 @@ with tab_compare:
                 color="#2E6B4F", height=260,
             )
 
-        # ── ROC curves ────────────────────────────────────────────────────
+        # ROC curves ──
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown('<div class="sec-head">ROC Curves</div>', unsafe_allow_html=True)
         roc_fig = plot_roc_curves(results)
@@ -504,7 +504,7 @@ with tab_compare:
             st.pyplot(roc_fig, use_container_width=True)
         plt.close(roc_fig)
 
-        # ── Metric heatmap ─────────────────────────────────────────────────
+        # Metric heatmap ───
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown('<div class="sec-head">Metrics Heatmap</div>', unsafe_allow_html=True)
 
