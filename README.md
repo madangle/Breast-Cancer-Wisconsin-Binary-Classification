@@ -41,6 +41,7 @@ to:
 ## 📊 b. Dataset Description
 
 **Dataset:** Breast Cancer Wisconsin (Diagnostic Dataset)
+**Description** The dataset is accessed using sklearn.datasets.load_breast_cancer(), which is originally sourced from the UCI Machine Learning Repository.
 **Type:** Binary Classification
 
 ### Dataset Characteristics
@@ -92,13 +93,17 @@ to:
 
 | ML Model Name        | Observation |
 |----------------------|------------|
-| Logistic Regression  | Strong AUC and high recall. Performs well in detecting malignant cases but moderate MCC. |
+| Logistic Regression  | Strong AUC and high recall. But large overfitting gap |
 | Decision Tree        | Achieved perfect recall (1.0), meaning no malignant case was missed. Lower AUC suggests weaker ranking performance. |
 | kNN                  | Lowest overall performance. Lower accuracy and MCC indicate weaker generalization. |
 | Naive Bayes          | Best performing model. Highest Accuracy, AUC, F1-score, and MCC. Balanced and highly effective. |
 | Random Forest        | Strong ensemble model with excellent recall and high AUC. Stable performance. |
 | XGBoost              | High AUC and perfect recall. Performance comparable to Random Forest. |
 
+
+## ✔️ Conclusion
+Although Logistic Regression and kNN achieved high training accuracy, they exhibited noticeable performance drops on the test set, 
+indicating potential overfitting. Naive Bayes demonstrated the best generalization performance with the smallest train-test gap.
 
 ## 🛠️ Tech Stack
 
