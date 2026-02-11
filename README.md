@@ -51,7 +51,17 @@ to:
     -   Malignant (M)
     -   Benign (B)
 -   Feature Type: Real-valued cell nucleus measurements
-
+-   The features describe characteristics of the cell nuclei such as:
+    -   Radius
+    -   Texture
+    -   Perimeter
+    -   Area
+    -   Smoothness
+    -   Compactness
+    -   Concavity
+    -   Symmetry
+    -   Fractal dimension
+-   The dataset is widely used for evaluating classification algorithms in medical diagnosis problems.
 ------------------------------------------------------------------------
 
 ## 🤖 c. Models Used
