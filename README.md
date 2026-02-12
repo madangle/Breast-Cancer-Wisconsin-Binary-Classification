@@ -35,6 +35,8 @@ to:
 -   F1-score
 -   AUC
 -   MCC (Matthews Correlation Coefficient)
+-   Accuracy
+-   Precision
 
 ------------------------------------------------------------------------
 
@@ -93,12 +95,12 @@ to:
 
 | ML Model Name        | Observation |
 |----------------------|------------|
-| Logistic Regression  | Strong AUC and high recall. But large overfitting gap |
+| Logistic Regression  | Strong AUC and high recall. But there is a large overfitting gap |
 | Decision Tree        | Achieved perfect recall (1.0), meaning no malignant case was missed. Lower AUC suggests weaker ranking performance. |
 | kNN                  | Lowest overall performance. Lower accuracy and MCC indicate weaker generalization. |
 | Naive Bayes          | Best performing model. Highest Accuracy, AUC, F1-score, and MCC. Balanced and highly effective. |
 | Random Forest        | Strong ensemble model with excellent recall and high AUC. Stable performance. |
-| XGBoost              | High AUC and perfect recall. Performance comparable to Random Forest. |
+| XGBoost              | High AUC and perfect recall. Performance is comparable to Random Forest. |
 
 
 ## ✔️ Conclusion
